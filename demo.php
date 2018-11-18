@@ -1,13 +1,11 @@
 <?php
-use GuzzleHttp\Client;
-
 require 'vendor/autoload.php';
 
-$apiUrl = "https://swapi.co/api/";
+$swEnciclopedia = new \SW\StarWarsEnciclopedia();
 
-$client = new Client();
+$planetas = $swEnciclopedia->getPlanetas(4);
 
-//hacemos la petición a un endpoint invalido
-$res = $client->request('GET', $apiUrl . 'peopleee/1');
-
-echo "El nombre del personaje con ID 1 es: " . json_decode($res->getBody(), true)['name'] . "\n";
+echo "PLANETAS QUE SALEN EN LA PELICULA 'LA AMENAZA FANTASMA':\n";
+foreach ($planetas as $planeta) {
+    echo $planeta->getName() . "\n";
+}
